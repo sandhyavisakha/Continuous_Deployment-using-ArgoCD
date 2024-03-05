@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: django-web-app
-          image: sandhyavisakha/django-web-app-v1.0
+          image: sandhyavisakha/django-web-app-v2.0
           ports:
             - containerPort: 8000
   strategy:
