@@ -34,14 +34,6 @@ spec:
           pause:
             duration: 60s
         - setWeight: 50
-          pause:
-            duration: 60s
-      maxUnavailable: 1
-      trafficRouting:
-        ambassador:
-          mappings:
-            - prefix: /
-              serviceName: django-web-app
-              servicePort: 8000
+          
 
   
