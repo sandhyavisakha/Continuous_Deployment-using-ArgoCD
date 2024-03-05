@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: django-web-app-rollout
+  namespace: djangoapp-ns
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: django-web-app
+  template:
+    metadata:
+      labels:
+        app: django-web-app
+    spec:
+      containers:
+        - name: django-web-app
+          image: sandhyavisakha/django-web-app-v1.0
+          ports:
+            - containerPort: 8000
+  strategy:
+    canary:
+      steps:
+        - setWeight: 10
+          pause:
+            duration: 60s
+        - setWeight: 20
+          pause:
+            duration: 60s
+        - setWeight: 30
+          pause:
+            duration: 60s
+        - setWeight: 40
+          pause:
+            duration: 60s
+        - setWeight: 50
+          pause:
+            duration: 60s
+      maxUnavailable: 1
+      trafficRouting:
+        ambassador:
+          mappings:
+            - prefix: /
+              serviceName: django-web-app
+              servicePort: 8000
