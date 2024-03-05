@@ -22,5 +22,25 @@ spec:
     canary:
       steps:
         - setWeight: 10
-          pause: {}
-           
+          pause:
+            duration: 60s
+        - setWeight: 20
+          pause:
+            duration: 60s
+        - setWeight: 30
+          pause:
+            duration: 60s
+        - setWeight: 40
+          pause:
+            duration: 60s
+        - setWeight: 50
+          pause:
+            duration: 60s
+      maxUnavailable: 1
+      trafficRouting:
+        ambassador:
+          mappings:
+            - prefix: /
+              serviceName: django-web-app
+              servicePort: 8000
+  
