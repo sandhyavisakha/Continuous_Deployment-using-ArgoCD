@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: djangodomain.local
+    - host: movetocloud.xyz
       http:
         paths:
           - path: /
